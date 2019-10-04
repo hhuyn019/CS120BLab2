@@ -33,9 +33,7 @@ int main(void) {
 		tmpB = 0x00; // Sets tmpB to bbbbbb10
 	// 																		 												 // (clear rightmost 2 bits, then set to 10)
 	}	
-	// 																		 												 			// 3) Write output
-	PORTB = tmpB;	
-	//
-    }
-    return 0;
+	// 																		 												 // 3) Write output
+	PORTB = tmpB;
+}
 }
