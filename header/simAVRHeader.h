@@ -28,4 +28,3 @@ static int uart_putchar(char c, FILE *stream) {
 
 /* Setup filestream for debugging */
 FILE mystdout = FDEV_SETUP_STREAM(uart_putchar,NULL,_FDEV_SETUP_WRITE);
-/* End SimAVR section */

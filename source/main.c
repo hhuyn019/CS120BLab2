@@ -15,25 +15,21 @@
 int main(void) {
     /* Insert DDR and PORT initializations */
 	DDRA = 0x00; PORTA = 0xFF;
-	DDRB = 0xFF; PORTB = 0x00;
-	unsigned char tmpB = 0x00;
+	//DDRB = 0xFF; PORTB = 0x00;
+	DDRC = 0xFF; PORTC = 0x00;
+	//unsigned char tmpB = 0x00;
+	unsigned char tmpA3 = 0x00;
+	unsigned char tmpA2 = 0x00;
 	unsigned char tmpA1 = 0x00;
 	unsigned char tmpA0 = 0x00;
+	unsigned char cntavail;
     /* Insert your solution below */
     while (1) {
-	// 1) Read input
-	tmpA1 = PINA & 0x02;
-	tmpA0 = PINA & 0x01;
-	// 2) Perform computation
-	// if PA0 is 1, set PB1PB0 = 01, else = 10
-	if (tmpA1 == 0x00 && tmpA0 == 0x01) { // True if PA0 is 1
-		tmpB = 0x01; // Sets tmpB to bbbbbb01
-	//  (clear rightmost 2 bits, then set to 01)
-	} else {
-		tmpB = 0x00; // Sets tmpB to bbbbbb10
-	// 																		 												 // (clear rightmost 2 bits, then set to 10)
-	}	
-	// 																		 												 // 3) Write output
-	PORTB = tmpB;
-}
+	tmpA3 = 0x08 & PINA;
+	tmpA2 = 0x04 & PINA;
+	tmpA1 = 0x02 & PINA;
+	tmpA0 = 0x01 & PINA;
+	cntavail = ((tmpA3 >> 3) + (tmpA2 >> 2) + (tmpA1 >> 1) + tmpA0);
+	PORTC = cntavail;
+    }
 }
